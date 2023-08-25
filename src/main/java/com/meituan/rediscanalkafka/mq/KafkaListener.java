@@ -25,24 +25,24 @@ public class KafkaListener {
                 + ", 下标" + consumer.offset() + "," + consumer.value());
         String json = (String) consumer.value();
         log.info("消息的json为： " + json);
-//        JSONObject jsonObject = JSONObject.parseObject(json);
-//        String type = jsonObject.getString("type");
-//        String pkNames = jsonObject.getJSONArray("pkNames").getString(0);
-//        JSONArray data = jsonObject.getJSONArray("data");
-//        for (int i = 0; i < data.size(); i++) {
-//            JSONObject dataObject = data.getJSONObject(i);
-//            String key = dataObject.getString(pkNames);
-//            switch (type) {
-//                case "UPDATE":
-//                    log.info("update " + dataObject.toJSONString());
-//                    break;
-//                case "INSERT":
-//                    log.info("insert " + dataObject.toJSONString());
-//                    break;
-//                case "DELETE":
-//                    log.info(dataObject.toJSONString());
-//                    break;
-//            }
-//        }
+        JSONObject jsonObject = JSONObject.parseObject(json);
+        String type = jsonObject.getString("type");
+        String pkNames = jsonObject.getJSONArray("pkNames").getString(0);
+        JSONArray data = jsonObject.getJSONArray("data");
+        for (int i = 0; i < data.size(); i++) {
+            JSONObject dataObject = data.getJSONObject(i);
+            String key = dataObject.getString(pkNames);
+            switch (type) {
+                case "UPDATE":
+                    log.info("update " + dataObject.toJSONString());
+                    break;
+                case "INSERT":
+                    log.info("insert " + dataObject.toJSONString());
+                    break;
+                case "DELETE":
+                    log.info(dataObject.toJSONString());
+                    break;
+            }
+        }
     }
 }
