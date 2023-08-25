@@ -31,4 +31,5 @@ spring:
     database: 0
   canal:
     server: 127.0.0.1:11111  #你canal的地址
-    destination: redis-topic
+    destination: example
+#    serverMode: tcp
